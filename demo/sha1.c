@@ -157,7 +157,7 @@ int SHA1Result(SHA1Context * context,
  */
 int SHA1Input(SHA1Context * context,
     const uint8_t * message_array,
-    unsigned       length)
+    unsigned int length)
 {
     if (!length)
     {
@@ -179,10 +179,10 @@ int SHA1Input(SHA1Context * context,
     {
         return context->Corrupted;
     }
+
     while (length-- && !context->Corrupted)
     {
-        context->Message_Block[context->Message_Block_Index++] =
-            (*message_array & 0xFF);
+        context->Message_Block[context->Message_Block_Index++] = (*message_array & 0xFF);
 
         context->Length_Low += 8;
         if (context->Length_Low == 0)
@@ -198,6 +198,7 @@ int SHA1Input(SHA1Context * context,
         if (context->Message_Block_Index == 64)
         {
             SHA1ProcessMessageBlock(context);
+            context->Message_Block_Index = 0;
         }
 
         message_array++;
