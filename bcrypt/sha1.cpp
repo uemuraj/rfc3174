@@ -24,7 +24,7 @@ class SHA1
 public:
 	SHA1(const uint8_t * data, unsigned int size) : m_algorithm(nullptr), m_hash(nullptr), m_status(::BCryptOpenAlgorithmProvider(&m_algorithm, BCRYPT_SHA1_ALGORITHM, nullptr, 0))
 	{
-		size_t length{};
+		ULONG length{};
 		ULONG result{};
 
 		if (m_status == 0)
@@ -114,7 +114,7 @@ const char * testarray[4] =
 
 int main()
 {
-	std::cout << SHA1((const uint8_t *) testarray[0], strlen(testarray[0]));
+	std::cout << SHA1((const uint8_t *) testarray[0], (unsigned int) strlen(testarray[0]));
 
 	return 0;
 }

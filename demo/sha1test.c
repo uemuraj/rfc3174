@@ -75,7 +75,7 @@ int main()
         {
             err = SHA1Input(&sha,
                 (const unsigned char *) testarray[j],
-                strlen(testarray[j]));
+                (unsigned int) strlen(testarray[j]));
             if (err)
             {
                 fprintf(stderr, "SHA1Input Error %d.\n", err);
